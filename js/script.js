@@ -1,19 +1,32 @@
-var anchor = $("header.global-navigation nav a");
-var nav = $("header.global-navigation nav");
+var stateMap = {
+  initial_state: "closed",
+  opened_state: "opened"
+};
 
-anchor.on("click", function(e) {
-  e.preventDefault();
-  anchor.removeClass("active");
-  $(this).addClass("active");
+var trigger = function() {
+  var anchor = $("header.global-navigation nav a"),
+      nav = $("header.global-navigation nav");
 
-  switch (nav.attr("class")) {
-    case ("closed"):
-      nav.removeClass("closed");
-      nav.addClass("opened");
-      break;
-    case ("opened"):
-      nav.removeClass("opened");
-      nav.addClass("closed");
-      break;
-    }
-  });
+  anchor.on("click", function(e) {
+    e.preventDefault();
+    anchor.removeClass("active");
+    $(this).addClass("active");
+
+    switch (nav.attr("class")) {
+      case ("closed"):
+        nav.removeClass(stateMap.initial_state);
+        nav.addClass(stateMap.opened_state);
+        break;
+      case ("opened"):
+        nav.removeClass(stateMap.opened_state);
+        nav.addClass(stateMap.initial_state);
+        break;
+      }
+    });
+};
+
+var init = function() {
+  trigger();
+};
+
+init();
