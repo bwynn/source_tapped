@@ -25,6 +25,10 @@ body {
   padding: 0;
   margin: 0;
   list-style-type: none;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
 }
 
 #waves-wrap header.global-navigation nav ul li {
@@ -36,39 +40,43 @@ body {
   display: block;
   height: inherit;
   color: white;
+  transition: .3s ease-in-out;
 }
 
-/* Active Styles */
-#waves-wrap header.global-navigation nav.inactive {
-  width: 30%;
+/* Closed Styles */
+#waves-wrap header.global-navigation nav.closed {
+  width: 19em;
   margin: 0 auto;
   position: relative;
   top: 6em;
 }
 
-#waves-wrap header.global-navigation nav.inactive ul {
+#waves-wrap header.global-navigation nav.closed ul {
   width: 100%;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-flex-flow: row wrap;
-  flex-flow: row wrap;
   -webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 
-#waves-wrap header.global-navigation nav.inactive ul li {
+#waves-wrap header.global-navigation nav.closed ul li {
   display: block;
   height: 40%;
   width: 40%;
   margin: 1%;
   flex-grow: 1;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  cursor: pointer;
 }
 
-#waves-wrap header.global-navigation nav.inactive ul li:hover {
+#waves-wrap header.global-navigation nav.closed ul li:hover,
+#waves-wrap header.global-navigation nav.closed ul li:hover > a.active:hover {
   background-color: #888;
 }
 
-#waves-wrap header.global-navigation nav.inactive ul li a {
+#waves-wrap header.global-navigation nav.closed ul li a {
+  position: relative;
+  z-index: 1;
   text-decoration: none;
   text-align: center;
   padding: 4em 0;
@@ -77,23 +85,31 @@ body {
   transform: rotate(-45deg);
 }
 
-/* Inactive Styles */
-#waves-wrap header.global-navigation nav.active {
-
+/* Opened Styles */
+#waves-wrap header.global-navigation nav.opened ul {
+  -webkit-align-content: stretch;
+  align-content: stretch;
 }
 
-#waves-wrap header.global-navigation nav.active ul {
-
+#waves-wrap header.global-navigation nav.opened ul li {
+  display: block;
+  flex-grow: 1;
 }
 
-#waves-wrap header.global-navigation nav.active ul li {
-
+#waves-wrap header.global-navigation nav.opened ul li a {
+  text-align: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background-color: #888;
+  margin: .5em auto;
+  overflow: hidden;
+  font-size: .6em;
+  padding-top: 1.4em;
+  box-sizing: border-box;
+  text-decoration: none;
 }
 
-#waves-wrap header.global-navigation nav.active ul li:hover {
-
-}
-
-#waves-wrap header.global-navigation nav.active ul li a {
-
+#waves-wrap header.global-navigation nav.opened ul li a.active {
+  background-color: #444;
 }
